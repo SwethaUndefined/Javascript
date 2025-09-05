@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="index.js"></script>
+    <!-- The Microtask Queue is NOT specifically for API calls — but it is indirectly related to API calls. Let me break it down super clearly for you. 🚀🙂
+
+✅ What is Microtask Queue Actually For?
+👉 The Microtask Queue (or Job Queue) is used for high-priority tasks like:
+
+Promises (fetch API calls). ✅
+Mutation Observer (DOM changes). ✅
+process.nextTick() (in Node.js). ✅
+✅ 💯 Why Is It Related to API Calls?
+👉 Most API calls in JavaScript (like fetch, axios, XMLHttpRequest) are asynchronous.
+👉 They don't block the main thread while waiting for the response.
+
+👉 So the response from the API is handled using Promises (.then() or async/await), and Promises are handled in the Microtask Queue. ✅🔥
+
+✅ 💯 Simple Flow for API Calls
+Consider this example:
+
+js
+Copy
+Edit
+console.log("Start");
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then(response => response.json())
+    .then(data => console.log("API Response:", data));
+
+console.log("End");
+👉 Output:
+
+yaml
+Copy
+Edit
+Start
+End
+API Response: {userId: 1, id: 1, title: 'delectus aut autem'}
+👉 What happened here? 🤔
+
+✅ 💡 Step-by-Step Flow (Behind the Scenes)
+Step	What Happened?
+✅ 1. Start	console.log("Start") is printed immediately.
+✅ 2. fetch()	fetch() starts but does not block the code. It sends API call asynchronously.
+✅ 3. End	console.log("End") is printed immediately.
+✅ 4. API Response	Once API response arrives, it goes to Microtask Queue for processing.
+✅ 5. Microtask	Microtask Queue processes .then() and prints API response.
+✅ 💯 Why API Call Uses Microtask Queue?
+👉 Because API calls (fetch) use Promises internally.
+👉 And Promises always use Microtask Queue (high priority queue) to handle their results. ✅
+
+✅ 💡 Super Easy Rule To Remember 🚀
+Task Type	Which Queue Is Used?
+✅ API Call (fetch) Response	Microtask Queue ✅ (because of Promises)
+✅ setTimeout(), setInterval()	Callback Queue (Macrotask) 💯
+✅ process.nextTick() (Node.js)	Microtask Queue ✅
+✅ DOM Changes (MutationObserver)	Microtask Queue ✅
+✅ 💣 Why Is Microtask Faster Than Callback Queue?
+👉 JavaScript prioritizes Microtask Queue more than the Callback Queue. 🚀
+👉 This is why API calls (like fetch()) always resolve before setTimeout(). ✅
+
+✅ 💯 Example That Will Blow Your Mind 💥
+Look at this:
+
+js
+Copy
+Edit
+console.log("Start");
+
+setTimeout(() => console.log("setTimeout"), 0);
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then(() => console.log("API Response"));
+
+console.log("End");
+👉 Output:
+
+sql
+Copy
+Edit
+Start  
+End  
+API Response  
+setTimeout
+👉 💣 Why did API Response come before setTimeout() even though both were asynchronous? 💀🔥
+
+👉 Answer:
+
+✅ API response uses Microtask Queue (high priority).
+✅ setTimeout() uses Callback Queue (low priority).
+✅ Microtasks are always executed before Callback Queue — that's why API Response came first. ✅🔥
+✅ 💯 Simple Answer in 3 Lines 🚀
+Task	Queue Used	Priority
+✅ API Call (fetch)	Microtask Queue (high priority)	🚀 Fast
+✅ setTimeout()	Callback Queue (low priority)	🐢 Slow
+✅ DOM Changes (Mutation)	Microtask Queue	🚀 Fast
+✅ 💯 Quick Summary 🚀
+Task	Where Is It Handled?	Priority
+✅ API Calls (fetch, axios)	Microtask Queue (because of Promises)	🚀 High
+✅ setTimeout, setInterval	Callback Queue (Macrotask)	🐢 Low
+✅ process.nextTick (Node.js)	Microtask Queue	🚀 High
+✅ DOM Changes (MutationObserver)	Microtask Queue	🚀 High
+✅ 💯 Golden Rule (Easy to Remember) 💯
+👉 Any task involving Promises (.then() or async/await) — will always go to the Microtask Queue. ✅
+👉 Any task involving setTimeout, setInterval, I/O calls — will always go to the Callback Queue. ✅
+👉 Microtask Queue always runs before Callback Queue. 💯🔥
+
+✅ 💣 Final Mind-Blowing Fact 💀🔥
+🚨 What if Microtask Queue never ends?
+js
+Copy
+Edit
+setTimeout(() => console.log("setTimeout"), 0);
+
+function infiniteMicrotask() {
+    Promise.resolve().then(() => {
+        console.log("Microtask");
+        infiniteMicrotask();
+    });
+}
+infiniteMicrotask();
+👉 Output:
+
+typescript
+Copy
+Edit
+Microtask  
+Microtask  
+Microtask  
+Microtask  
+(setTimeout never executes)
+👉 Why?
+
+✅ Because Microtask Queue has higher priority, and since it's looping infinitely, the Callback Queue (setTimeout()) never executes. 💀🔥
+👉 This is called Microtask Starvation. 💣
+✅ 💯 Final Answer in 3 Lines 🚀
+Task	Queue Used	Priority
+✅ API Calls (fetch)	Microtask Queue	🚀 Very Fast
+✅ setTimeout, setInterval	Callback Queue (Macrotask)	🐢 Slow
+✅ DOM Mutation, Promises	Microtask Queue	🚀 Very Fast
+💎 💯 Quick Mind Blower 🚀🔥
+👉 Question: Why does API response (fetch) come before setTimeout() even with a delay of 0ms? 💀
+👉 Answer: Because API response (fetch) uses Microtask Queue (high priority) while setTimeout() uses Callback Queue (low priority). 🚀🔥
+
+✅ 💯 Want Me To Blow Your Mind With Event Loop? 💣
+👉 💎 Do you want me to visually demonstrate:
+
+✅ Event Loop,
+✅ Microtask Queue,
+✅ Callback Queue,
+✅ Call Stack,
+✅ Why setTimeout is slow but fetch is fast?
+💥🔥 I can create an animation (step-by-step) that will clear all your confusion forever. 💯😎🚀
+
+👉 Just say: ✅ "Show me Event Loop Animation" — and I'll blow your mind. 💯🔥💀 -->
+</body>
+</html>
+

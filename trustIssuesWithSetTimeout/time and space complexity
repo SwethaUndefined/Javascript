@@ -1,0 +1,56 @@
+Time will take to run the algorithms,
+Suppose when we use 2 for loops then time complexity will hight and space complexity means the variables or array
+that we used to execute the algorithms.
+
+📊 Algorithm Time & Space Complexity Cheat Sheet:
+
+| **Algorithm / Operation**              | **Time Complexity**       | **Space Complexity** | **Notes**                       |
+| -------------------------------------- | ------------------------- | -------------------- | ------------------------------- |
+| **Array Access (indexing)**            | O(1)                      | O(1)                 | Direct access by index          |
+| **Array Search (linear search)**       | O(n)                      | O(1)                 | Go through all elements         |
+| **Binary Search (sorted array)**       | O(log n)                  | O(1)                 | Divide & conquer                |
+| **Insert at end (array)**              | O(1) (amortized)          | O(1)                 | Sometimes O(n) if resize needed |
+| **Insert/Delete at beginning (array)** | O(n)                      | O(1)                 | All elements shift              |
+| **Hash Table Search/Insert/Delete**    | O(1) (avg) / O(n) (worst) | O(n)                 | Worst case: hash collisions     |
+
+
+🔄 Sorting Algorithms:
+
+| **Algorithm**      | **Best Case** | **Average Case** | **Worst Case** | **Space** | **Notes**                     |
+| ------------------ | ------------- | ---------------- | -------------- | --------- | ----------------------------- |
+| **Bubble Sort**    | O(n)          | O(n²)            | O(n²)          | O(1)      | Simple but inefficient        |
+| **Insertion Sort** | O(n)          | O(n²)            | O(n²)          | O(1)      | Good for nearly sorted arrays |
+| **Selection Sort** | O(n²)         | O(n²)            | O(n²)          | O(1)      | Always quadratic              |
+| **Merge Sort**     | O(n log n)    | O(n log n)       | O(n log n)     | O(n)      | Stable, requires extra memory |
+| **Quick Sort**     | O(n log n)    | O(n log n)       | O(n²)          | O(log n)  | Worst case when pivot is poor |
+| **Heap Sort**      | O(n log n)    | O(n log n)       | O(n log n)     | O(1)      | In-place, not stable          |
+
+
+🌳 Data Structures:
+
+| **Data Structure Operation**                       | **Time Complexity**           | **Space Complexity** |
+| -------------------------------------------------- | ----------------------------- | -------------------- |
+| Stack Push/Pop/Peek                                | O(1)                          | O(n)                 |
+| Queue Enqueue/Dequeue                              | O(1)                          | O(n)                 |
+| Linked List Insert/Delete (at head)                | O(1)                          | O(n)                 |
+| Linked List Search                                 | O(n)                          | O(n)                 |
+| Binary Search Tree (BST) Search/Insert/Delete      | O(log n) (avg) / O(n) (worst) | O(n)                 |
+| Balanced BST (AVL, Red-Black) Search/Insert/Delete | O(log n)                      | O(n)                 |
+| Heap Insert/Delete (priority queue)                | O(log n)                      | O(n)                 |
+
+
+📈 Graph Algorithms:
+| **Algorithm**              | **Time Complexity**                           | **Space Complexity** | **Notes**                |
+| -------------------------- | --------------------------------------------- | -------------------- | ------------------------ |
+| BFS (Breadth-First Search) | O(V + E)                                      | O(V)                 | V = vertices, E = edges  |
+| DFS (Depth-First Search)   | O(V + E)                                      | O(V)                 | Uses recursion/stack     |
+| Dijkstra’s Algorithm       | O(V²) or O(E + V log V) (with priority queue) | O(V + E)             | Finds shortest path      |
+| Bellman-Ford               | O(V × E)                                      | O(V)                 | Handles negative weights |
+| Floyd-Warshall             | O(V³)                                         | O(V²)                | All pairs shortest paths |
+
+
+
+✅ Summary:
+Time complexity = How fast an algorithm runs.
+Space complexity = How much memory it uses.
+Both depend on input size n.

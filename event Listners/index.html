@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="index.js" defer></script>
+
+</head>
+<body>
+    <button id="click-action">Click Me!</button>
+    <!-- <script src="index.js" defer></script> -->
+
+</body>
+</html>
+
+
+<!-- Now throws the error, because sometimes before html loaded the javascript started executing. To avoid that we  use defer in the 
+ head tag, defer will download the javascript and wait for html to loaded completely-->
+
+<!-- 
+ ✅ Script in <head> with defer:
+
+    🚀 The script starts downloading early but executes only after HTML is fully loaded.
+    ✅ Faster page load + No blocking.
+    ✔ Best Practice.
+
+✅ Script in <body> with defer:
+    
+    📥 The script downloads after HTML is parsed but still waits to execute.
+    ❌ Same effect as <head> but download is delayed.
+    🚫 No benefit, avoid this.
+    👉 Conclusion: Always use <script defer> in <head> for best performance. 🚀🙂 -->
+
+
+        <!-- 💡 Real-Life Example:
+Imagine you ordered pizza: 🍕
+
+In <head>: You order pizza while cooking (parallel) → Pizza arrives just when you finish cooking = ✅ Perfect! 🚀
+In <body>: You order pizza after finishing cooking → Now you have to wait for delivery = ❌ Small delay. 🐢 -->
