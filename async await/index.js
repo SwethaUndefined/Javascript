@@ -19,3 +19,4 @@ console.log(getData())
 getData().then(data => console.log({data}));
 //Output :
 // {data: 'Hello, World!'}
+
