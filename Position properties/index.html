@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position properties</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box-1">1</div>
+        <div class="box-2">2</div>
+        <div class="box-3">3</div>
+    </div>
+</body>
+</html>
+
+<!-- When we give position:absolute; only for box 2 then it is removed the container layout not visually in the backgound.
+ so the box1 ramains same but box3 is moved up because box2 is removed the layout but visually showing so it is overlapping
+ above the box3. Now if we give top:200px for box 2 without parent relative then parent will be the viewport the top starts from viewport,
+ if with relative in parent the top starts the nearest parent of the box2 -->
+
+ <!-- position:fixed, always from view port and box3 moves to box1 -->
+
+<!-- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 600px;
+      height: 500px;
+      margin: 50px auto;
+      border: 2px solid #333;
+      overflow-y: scroll; /* make it scrollable */
+      padding: 10px;
+    }
+
+    .header {
+      background-color: lightcoral;
+      padding: 10px;
+      font-size: 24px;
+    }
+
+    .sticky-box {
+      position: sticky;
+      top: 0; /* threshold from top */
+      background-color: lightgreen;
+      padding: 10px;
+      font-size: 20px;
+      border: 2px solid green;
+      margin-bottom: 10px;
+    }
+
+    .content {
+      background-color: lightskyblue;
+      padding: 10px;
+      margin-bottom: 10px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">Header (normal)</div>
+    <div class="sticky-box">I am sticky! Scroll me</div>
+    <div class="content">Content block 1</div>
+    <div class="content">Content block 2</div>
+    <div class="content">Content block 3</div>
+    <div class="content">Content block 4</div>
+    <div class="content">Content block 5</div>
+    <div class="content">Content block 6</div>
+  </div>
+
+</body>
+</html> -->
